@@ -1,0 +1,24 @@
+.footer{
+  display: flex;
+  justify-content: space-around;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(12, 20, 44);
+  color: red;
+  position: fixed;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+a{
+  text-decoration: none;
+  color: red;
+}
+
+a:hover{
+  color: gray;
+}
+
+
+
