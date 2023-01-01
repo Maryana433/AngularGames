@@ -5,9 +5,10 @@ import { NavbarModule } from '../../shared/navbar/navbar.module';
 import { HeaderModule } from './_features/header/header.module';
 import { FooterModule } from '../../shared/footer/footer.module';
 import {GameListModule} from "./_features/game-list/game-list.module";
+import {MainPageRoutingRoutingModule} from "./main-page-routing.module";
 
 @NgModule({
-    imports: [CommonModule, NavbarModule, HeaderModule, FooterModule, GameListModule],
+  imports: [CommonModule, NavbarModule, HeaderModule, FooterModule, GameListModule, MainPageRoutingRoutingModule],
   declarations: [MainPageComponent],
   exports: [MainPageComponent],
 })
