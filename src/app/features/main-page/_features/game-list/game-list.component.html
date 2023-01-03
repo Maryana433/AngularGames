@@ -1,0 +1,19 @@
+<div style="background-color: rgb(16, 24, 51);">
+  <ng-container *ngFor="let game of games;let i = index;">
+  <div class="row">
+    <div *ngIf="i%2==0" class="column" ><app-game-element
+                                                        [gameName]="games[i].name"
+                                                        [gameImage]="games[i].background_image"
+                                                        [gameId]="games[i].id"></app-game-element>
+    </div>
+    <div *ngIf="i%2==0" class="column" ><app-game-element [gameName]="games[i+1].name"
+                                                        [gameImage]="games[i+1].background_image"
+                                                        [gameId]="games[i+1].id"></app-game-element>
+    </div>
+  </div>
+  </ng-container>
+</div>
+
+
+
+

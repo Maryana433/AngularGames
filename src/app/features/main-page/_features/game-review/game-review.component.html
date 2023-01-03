@@ -1,1 +1,50 @@
-<p>game-review works!</p>
+<div class="article">
+
+  <div class="game_name">{{gameInfo.name}}</div>
+
+  <div class="row">
+  <img class="column" src="{{gameInfo.background_image}}"/>
+
+<div class="table column">
+<table>
+  <tr>
+    <td style="white-space: nowrap;">Metacritic scores</td>
+    <td>{{gameInfo.metacritic}}</td>
+  </tr>
+  <tr>
+    <td style="white-space: nowrap;">Released</td>
+    <td>{{gameInfo.released}}</td>
+  </tr>
+  <tr>
+    <td style="white-space: nowrap;">Website</td>
+    <td><a href={{gameInfo.website}}>{{gameInfo.website}}</a></td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap;">Platforms</td>
+    <td>{{gameInfo.metacriticPlatforms.join(', ') }}</td>
+  </tr>
+
+
+  <tr>
+    <td style="white-space: nowrap;">Publishers</td>
+    <td>{{gameInfo.publisherNames.join(', ') }}</td>
+  </tr>
+
+
+  <tr>
+    <td style="white-space: nowrap;">Genres</td>
+    <td>{{gameInfo.genreNames.join(', ') }}</td>
+  </tr>
+</table>
+</div>
+</div>
+
+
+  <div class="description_text">
+    {{removeHtmlTags(gameInfo.description)}}
+  </div>
+
+
+</div>
+

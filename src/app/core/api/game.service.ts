@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 
 interface Game{
-  
+
 }
 
 
@@ -21,6 +21,12 @@ export class GameService {
 
   getGames(): Observable<any> {
     return this.httpClient.get<Object[]>(this.baseURL + 'games', {
+      params: this.ApiParams,
+    });
+  }
+
+  getGameInfo(id:number):Observable<any>{
+    return this.httpClient.get<Object[]>(this.baseURL + 'games/' + id, {
       params: this.ApiParams,
     });
   }

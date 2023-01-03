@@ -5,7 +5,7 @@ import {GameReviewComponent} from "./_features/game-review/game-review.component
 
 const routes: Routes = [
   { path: '', component: GameListComponent },
-  { path: 'test', component: GameReviewComponent },
+  { path: ':id', component: GameReviewComponent},
   { path: '**', component: GameListComponent}
 ];
 

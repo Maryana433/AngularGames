@@ -1,0 +1,10 @@
+.article{
+  text-align: center;
+  border: solid gray;
+  margin: 30px;
+}
+
+.game_name{
+  color: white;
+  padding-top: 10px;
+}
