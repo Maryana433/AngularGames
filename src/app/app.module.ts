@@ -14,7 +14,6 @@ import {LoadingInterceptor} from "./core/loading.interceptor";
   imports: [BrowserModule, FormsModule, HttpClientModule, MainPageModule, CommonModule],
   declarations: [AppComponent, CustomPipe, SpinnerComponent],
   bootstrap: [AppComponent],
-  //https://danielk.tech/home/angular-how-to-add-a-loading-spinner
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true

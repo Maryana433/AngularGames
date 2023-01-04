@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { LoaderService } from './loader.service';
 
+//https://danielk.tech/home/angular-how-to-add-a-loading-spinner
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
 
