@@ -1,5 +1,22 @@
+
 <div style="background-color: rgb(16, 24, 51);" id="game-list">
-  <ng-container *ngFor="let game of games;let i = index;">
+
+  <div style="display: flex; justify-content: end; padding-right: 30px; padding-top: 30px">
+  <pagination-controls
+    previousLabel="Prev"
+    nextLabel="Next"
+    (pageChange)="onTableDataChange($event)"
+  ></pagination-controls>
+  </div>
+
+  <!-- https://www.positronx.io/angular-server-side-pagination-with-ngx-pagination-example/ -->
+  <ng-container *ngFor="let game of games
+              | paginate
+              : {
+                  itemsPerPage: 20,
+                  currentPage: currentPage,
+                  totalItems: 200
+                };let i = index;">
   <div class="row">
     <div *ngIf="i%2==0" class="column" ><app-game-element
                                                         [gameName]="games[i].name"

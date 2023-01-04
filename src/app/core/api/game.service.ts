@@ -31,6 +31,13 @@ export class GameService {
     });
   }
 
+  getGamesPage(page:any): Observable<any> {
+    return this.httpClient.get<Object[]>(this.baseURL + 'games', {
+      params: new HttpParams().set('key', this.ApiKey).set('page',page),
+    });
+  }
+
+
 
 
 

@@ -8,10 +8,11 @@ import {CommonModule} from "@angular/common";
 import {CustomPipe} from "./core/pipe/custom-pipe.pipe";
 import { SpinnerComponent } from './core/spinner/spinner.component';
 import {LoadingInterceptor} from "./core/loading.interceptor";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, HttpClientModule, MainPageModule, CommonModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule, MainPageModule, CommonModule, NgxPaginationModule],
   declarations: [AppComponent, CustomPipe, SpinnerComponent],
   bootstrap: [AppComponent],
   providers: [
