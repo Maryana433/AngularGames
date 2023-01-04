@@ -5,8 +5,8 @@
 }
 
 img{
-  max-height: 350px;
-  max-width: 500px;
+  max-height: 500px;
+  max-width: 650px;
   border: solid rgb(3, 3, 30) 5px;
   margin-left: 50px;
   margin-top: 50px;
@@ -36,11 +36,12 @@ table, td {
 
 .row {
   display: flex;
+  align-items: center;
 }
 
 .column {
   flex: 50%;
-  margin-bottom: 25px;
+  justify-content: center;
 }
 
 .description_text{
@@ -53,4 +54,8 @@ table, td {
   color: blueviolet;
   padding-left: 10px;
   font-size: 25px;
+}
+
+.push{
+  margin-left: auto;
 }
