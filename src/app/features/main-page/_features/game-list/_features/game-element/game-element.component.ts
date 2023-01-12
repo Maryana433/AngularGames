@@ -9,13 +9,13 @@ export class GameElementComponent {
 
 
   @Input()
-  public gameName: any = null;
+  public gameName: string = '';
 
   @Input()
-  public gameImage: any = null;
+  public gameImage: string = '';
 
   @Input()
-  public gameId: any = null;
+  public gameId: number = 0;
 
 
 }

@@ -1,11 +1,15 @@
 .article{
   text-align: center;
   border: solid rgb(3, 3, 30) 8px;
-  margin: 30px;
-  padding: 1%;
+  padding: 15px;
 }
 
 .game_name{
   color: white;
-  padding-top: 10px;
+  padding-top: 8px;
+  padding-bottom: 5px;
+}
+
+article{
+  padding: 10px;
 }

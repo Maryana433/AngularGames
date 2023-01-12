@@ -1,34 +1,43 @@
-
 <div style="background-color: rgb(16, 24, 51);" id="game-list">
 
-  <div style="display: flex; justify-content: end; padding-right: 30px; padding-top: 30px">
-  <pagination-controls
+
+  <div style="display: flex; justify-content: space-evenly; padding-top: 20px">
+
+    <input style="height: 25px;margin:15px 20px 0px 20px; text-align: center" id="search-text"
+           [(ngModel)]="searchText" placeholder="Enter game name" autofocus>
+
+    <ng-container *ngFor="let tag of getAllTags()">
+      <button style="height: 25px;margin-top:18px;width: 75px" (click)="changeTag(tag)" value="tag">{{tag}}</button>
+    </ng-container>
+
+
+  <pagination-controls class="my-pagination" style="min-width: 35%;"
     previousLabel="Prev"
     nextLabel="Next"
     (pageChange)="onTableDataChange($event)"
   ></pagination-controls>
+
   </div>
 
-  <!-- https://www.positronx.io/angular-server-side-pagination-with-ngx-pagination-example/ -->
-  <ng-container *ngFor="let game of games
-              | paginate
-              : {
-                  itemsPerPage: 20,
-                  currentPage: currentPage,
-                  totalItems: 200
-                };let i = index;">
+  <div style="text-align: center; font-size: 25px; color: white">{{currentTag | uppercase}} GAMES</div>
+
   <div class="row">
-    <div *ngIf="i%2==0" class="column" ><app-game-element
-                                                        [gameName]="games[i].name"
-                                                        [gameImage]="games[i].background_image"
-                                                        [gameId]="games[i].id"></app-game-element>
+
+    <ng-container *ngFor="let game of allGames | appFilter: searchText | tagPipe:currentTag | paginate
+              : {
+                  itemsPerPage: itemsPerPage,
+                  currentPage: currentPage,
+                  totalItems: calculateTotalItems(searchText)
+                };let i = index;">
+    <div class="column" ><app-game-element
+                                                        [gameName]="game.name"
+                                                        [gameImage]="game.background_image"
+                                                        [gameId]="game.id"></app-game-element>
     </div>
-    <div *ngIf="i%2==0" class="column" ><app-game-element [gameName]="games[i+1].name"
-                                                        [gameImage]="games[i+1].background_image"
-                                                        [gameId]="games[i+1].id"></app-game-element>
-    </div>
+    </ng-container>
+
   </div>
-  </ng-container>
+
 </div>
 
 

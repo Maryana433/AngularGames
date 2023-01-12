@@ -1,35 +1,26 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
+import {HttpRequest, HttpHandler,
+  HttpEvent, HttpInterceptor} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import {finalize} from 'rxjs/operators';
 import { LoaderService } from './loader.service';
 
 //https://danielk.tech/home/angular-how-to-add-a-loading-spinner
+//https://zoaibkhan.com/blog/how-to-add-loading-spinner-in-angular-with-rxjs/
+
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
 
-  private totalRequests = 0;
-
-  constructor(
-    private loadingService: LoaderService
-  ) {}
+  constructor(private loader: LoaderService) {
+  }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('caught')
-    this.totalRequests++;
-    this.loadingService.setLoading(true);
+    this.loader.show();
     return next.handle(request).pipe(
       finalize(() => {
-        this.totalRequests--;
-        if (this.totalRequests == 0) {
-          this.loadingService.setLoading(false);
-        }
+        this.loader.hide();
       })
     );
   }
+
 }

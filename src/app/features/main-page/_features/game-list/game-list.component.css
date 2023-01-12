@@ -1,10 +1,43 @@
-.row {
-  display: flex;
-  padding-bottom: 10px;
+/*.row {*/
+/*  display: flex;*/
+/*  padding-bottom: 10px;*/
+/*}*/
+
+/*.column {*/
+/*  flex: 50%;*/
+/*}*/
+
+
+.column{
+  height: content-box;
 }
 
-.column {
-  flex: 50%;
+.row{
+  column-count: 2;
+  padding-top: 25px;
+  padding-right: 10px;
 }
 
 
+input::placeholder{
+  color: #0b0a0c;
+}
+
+input{
+  background-color: #a19c9c;
+
+}
+
+button:active{
+  background-color: #625656;
+}
+
+button{
+  border-radius: 10px;
+  background-color: #a19c9c;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: #401f9a;
+  color: white;
+}

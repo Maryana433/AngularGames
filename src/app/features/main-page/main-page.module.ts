@@ -8,8 +8,9 @@ import {GameListModule} from "./_features/game-list/game-list.module";
 import {MainPageRoutingRoutingModule} from "./main-page-routing.module";
 
 @NgModule({
-  imports: [CommonModule, NavbarModule, HeaderModule, FooterModule, GameListModule, MainPageRoutingRoutingModule],
+  imports: [CommonModule, NavbarModule, HeaderModule, FooterModule, GameListModule, MainPageRoutingRoutingModule,
+  ],
   declarations: [MainPageComponent],
-  exports: [MainPageComponent],
+  exports: [MainPageComponent]
 })
 export class MainPageModule {}

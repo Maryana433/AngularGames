@@ -1,49 +1,70 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {GameService} from "../../../../core/api/game.service";
-import {firstValueFrom} from "rxjs";
-
-export interface Game{
-  background_image:string,
-  name:string;
-  id:number;
-}
+import {Game} from "../../../../core/interface/Game";
+import {GameTag} from "../../../../core/game-tag";
 
 @Component({
   selector: 'app-game-list',
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.css']
 })
-export class GameListComponent {
+export class GameListComponent{
 
   public games: Array<Game> = [];
-
-  currentPage: any = 3;
+  currentPage: number = 1;
+  searchText:string = '';
+  totalItems:number = 200;
+  itemsPerPage:number = 20;
+  allGames:Array<Game> = [];
+  currentTag: keyof typeof GameTag = 'ALL';
 
   constructor(private gameService: GameService) {
-    this.fetchGames();
-  }
-
-  fetchGames(): void {
-    this.gameService.getGamesPage(this.currentPage).subscribe(
-      (response) => {
-        this.games.splice(0);
-        let rawGames = response.results;
-        for (let i = 0; i < rawGames.length; i++) {
-          let {name, background_image, id}: Game = rawGames[i];
-          let game: Game = {name, background_image, id};
-          this.games.push(game);
-        }
-        console.log("GAMES")
-        console.log(this.games)
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.getAllGames();
   }
 
   onTableDataChange(event: any) {
     this.currentPage = event;
-    this.fetchGames();
+  }
+
+  calculateTotalItems(searchText: string) {
+    let totalItems =  this.allGames.filter(it => {
+      return it.name.toLocaleLowerCase().includes(searchText) && it.genres?.includes(this.currentTag);
+    }).length;
+    console.log("Total items filtered " + totalItems);
+    return totalItems;
+  }
+
+
+  getAllGames(){
+    for (let i = 1; i <= 20; i++) {
+      this.gameService.getGamesPage(i).subscribe(
+        (data) => {
+          let rawGames = data.results;
+          rawGames.forEach((el:any) => {
+            let {name, background_image, id, genres}: Game = el;
+            let nameOfTags:Array<string> = [];
+            // @ts-ignore
+            genres.forEach((genre:any) => nameOfTags.push(genre.name));
+            let game: Game = {name, background_image, id};
+            game.genres = nameOfTags;
+            this.allGames.push(game);
+          })
+        }
+      );
+    }
+    console.log("All Games")
+    console.log(this.allGames)
+  }
+
+
+  getAllTags():Array<string>{
+    return Object.keys(GameTag).filter((tag) => isNaN(Number(tag)) && tag.toString() != 'ALL');
+  }
+
+  changeTag(tag:string) {
+    if(this.currentTag.toString() === tag)
+      this.currentTag = 'ALL';
+    else
+      this.currentTag = tag as keyof typeof GameTag;
   }
 }

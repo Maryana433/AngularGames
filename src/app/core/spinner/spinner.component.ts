@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { LoaderService } from '../loader.service';
 
 @Component({
@@ -6,6 +6,12 @@ import { LoaderService } from '../loader.service';
   templateUrl: './spinner.component.html',
   styleUrls: ['./spinner.component.css']
 })
-export class SpinnerComponent {
-  constructor(public loader: LoaderService) { }
+export class SpinnerComponent{
+
+  loading$ = this.loader.loading$;
+
+  constructor(private loader: LoaderService) {
+  }
+
+
 }

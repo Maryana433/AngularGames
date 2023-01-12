@@ -4,7 +4,7 @@ import {GameListComponent} from "./_features/game-list/game-list.component";
 import {GameReviewComponent} from "./_features/game-review/game-review.component";
 
 const routes: Routes = [
-  { path: '', component: GameListComponent },
+  { path: '', component: GameListComponent},
   { path: ':id', component: GameReviewComponent},
   { path: '**', component: GameListComponent}
 ];
@@ -14,4 +14,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class MainPageRoutingRoutingModule { }
+export class MainPageRoutingRoutingModule {
+
+}
