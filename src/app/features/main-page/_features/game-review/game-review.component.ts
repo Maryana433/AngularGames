@@ -1,18 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {GameService} from "../../../../core/api/game.service";
-
-interface GameInfo{
-  name:string;
-  description:string;
-  metacritic:number;
-  metacriticPlatforms:Array<String>;
-  released:Date;
-  background_image:string;
-  genreNames:Array<String>;
-  publisherNames:Array<String>;
-  website:string;
-}
+import {GameService} from "../../../../core/service/api/game.service";
+import {GameInfo} from "../../../../core/interface/gameInfo";
 
 @Component({
   selector: 'app-game-review',
@@ -21,29 +10,27 @@ interface GameInfo{
 })
 export class GameReviewComponent implements OnInit{
 
-
   id:number = 0;
   gameInfo!:GameInfo;
 
-  constructor(private activatedRoute:ActivatedRoute,
-              private gameService:GameService,
-              private changeDetectorRef:ChangeDetectorRef) {
+  constructor(private readonly activatedRoute:ActivatedRoute,
+              private readonly gameService:GameService,
+              private readonly changeDetectorRef:ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.params['id'];
-    this.fetchGamesInfo();
+    this.fetchGameInfo();
   }
 
 
-  fetchGamesInfo(){
-    let rawGameInfo:any;
-    this.gameService.getGameInfo(this.id).subscribe((data)=>{
-        rawGameInfo = data;
+  fetchGameInfo(){
+    this.gameService.getGameInfoById(this.id).subscribe((data)=>{
+
+    let rawGameInfo = data;
 
     let {name,description,metacritic,website,metacritic_platforms,
       released,background_image,genres,publishers} = rawGameInfo;
-
     let metacriticPlatforms:Array<String> = [];
     let publisherNames:Array<String> = [];
     let genreNames:Array<String> = [];
@@ -53,16 +40,11 @@ export class GameReviewComponent implements OnInit{
 
     this.gameInfo = {name,description,website,metacritic,metacriticPlatforms,
         released,background_image,genreNames,publisherNames};
-
     });
-
 
     this.changeDetectorRef.detectChanges();
     console.log("Game info of this page : " + this.gameInfo);
   }
-
-
-
 
    removeHtmlTags(str:string):string {
     let re = /<[^>]*>/g;

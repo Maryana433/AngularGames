@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import { LoaderService } from '../loader.service';
+import { LoaderService } from '../../core/service/loader.service';
 
 @Component({
   selector: 'app-spinner',

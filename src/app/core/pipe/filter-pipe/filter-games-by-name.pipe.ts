@@ -1,8 +1,8 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {Game} from "../interface/Game";
+import {Game} from "../../interface/game";
 
-@Pipe({ name: 'appFilter' })
-export class FilterPipe implements PipeTransform {
+@Pipe({ name: 'gameNameFilter' })
+export class GameNameFilterPipe implements PipeTransform {
 
   transform(items: Game[], searchText: string): any[] {
     if (!items) {

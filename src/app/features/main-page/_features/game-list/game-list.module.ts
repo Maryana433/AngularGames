@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 import { GameListComponent } from './game-list.component';
 import {GameElementModule} from "./_features/game-element/game-element.module";
 import {NgxPaginationModule} from "ngx-pagination";
-import {FilterPipe} from "../../../../core/pipe/filter-pipe.pipe";
+import { GameNameFilterPipe} from "../../../../core/pipe/filter-pipe/filter-games-by-name.pipe";
 import {FormsModule} from "@angular/forms";
-import {TagPipe} from "../../../../core/pipe/tag.pipe";
-
+import {GameGenreFilterPipe} from "../../../../core/pipe/filter-pipe/filter-games-by-genre.pipe";
 
 @NgModule({
     declarations: [
-        GameListComponent, FilterPipe, TagPipe
+        GameListComponent, GameNameFilterPipe, GameGenreFilterPipe
     ],
     exports: [
         GameListComponent

@@ -24,17 +24,17 @@ input::placeholder{
 }
 
 input{
-  background-color: #a19c9c;
+  background-color: #401f9a;
 
 }
 
 button:active{
-  background-color: #625656;
+  background-color: white;
 }
 
 button{
-  border-radius: 10px;
-  background-color: #a19c9c;
+  border-radius: 6px;
+  background-color: #401f9a;
 }
 
 .my-pagination ::ng-deep .ngx-pagination .current {

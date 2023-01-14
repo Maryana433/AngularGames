@@ -2,6 +2,7 @@
   text-align: center;
   border: solid rgb(3, 3, 30) 8px;
   padding: 15px;
+  border-radius: 6px;
 }
 
 .game_name{

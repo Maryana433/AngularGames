@@ -1,13 +1,12 @@
 <div style="background-color: rgb(16, 24, 51);" id="game-list">
-
-
   <div style="display: flex; justify-content: space-evenly; padding-top: 20px">
 
     <input style="height: 25px;margin:15px 20px 0px 20px; text-align: center" id="search-text"
            [(ngModel)]="searchText" placeholder="Enter game name" autofocus>
 
-    <ng-container *ngFor="let tag of getAllTags()">
-      <button style="height: 25px;margin-top:18px;width: 75px" (click)="changeTag(tag)" value="tag">{{tag}}</button>
+    <ng-container *ngFor="let tag of getAllGenres()">
+      <button style="height:25px;margin-top:18px;width:fit-content;"
+              (click)="changeGenre(tag)" value="tag">{{tag}}</button>
     </ng-container>
 
 
@@ -23,7 +22,7 @@
 
   <div class="row">
 
-    <ng-container *ngFor="let game of allGames | appFilter: searchText | tagPipe:currentTag | paginate
+    <ng-container *ngFor="let game of allGames | gameNameFilter: searchText | gameGenreFilter:currentTag | paginate
               : {
                   itemsPerPage: itemsPerPage,
                   currentPage: currentPage,

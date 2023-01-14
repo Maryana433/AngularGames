@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {GameService} from "../../../../core/api/game.service";
-import {Game} from "../../../../core/interface/Game";
-import {GameTag} from "../../../../core/game-tag";
+import {GameService} from "../../../../core/service/api/game.service";
+import {Game} from "../../../../core/interface/game";
+import {GameGenre} from "../../../../core/enum/game-genre";
 
 @Component({
   selector: 'app-game-list',
@@ -13,10 +13,10 @@ export class GameListComponent{
   public games: Array<Game> = [];
   currentPage: number = 1;
   searchText:string = '';
-  totalItems:number = 200;
+  totalItems:number = 600;
   itemsPerPage:number = 20;
   allGames:Array<Game> = [];
-  currentTag: keyof typeof GameTag = 'ALL';
+  currentTag: keyof typeof GameGenre = 'ALL';
 
   constructor(private gameService: GameService) {
     this.getAllGames();
@@ -36,8 +36,8 @@ export class GameListComponent{
 
 
   getAllGames(){
-    for (let i = 1; i <= 20; i++) {
-      this.gameService.getGamesPage(i).subscribe(
+    for (let i = this.totalItems/this.itemsPerPage; i >= 1; i--) {
+      this.gameService.getGamesPerPage(i).subscribe(
         (data) => {
           let rawGames = data.results;
           rawGames.forEach((el:any) => {
@@ -56,15 +56,14 @@ export class GameListComponent{
     console.log(this.allGames)
   }
 
-
-  getAllTags():Array<string>{
-    return Object.keys(GameTag).filter((tag) => isNaN(Number(tag)) && tag.toString() != 'ALL');
+  getAllGenres():Array<string>{
+    return Object.keys(GameGenre).filter((tag) => isNaN(Number(tag)) && tag.toString() != 'ALL');
   }
 
-  changeTag(tag:string) {
+  changeGenre(tag:string) {
     if(this.currentTag.toString() === tag)
       this.currentTag = 'ALL';
     else
-      this.currentTag = tag as keyof typeof GameTag;
+      this.currentTag = tag as keyof typeof GameGenre;
   }
 }

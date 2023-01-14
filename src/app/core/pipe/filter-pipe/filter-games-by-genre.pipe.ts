@@ -1,13 +1,13 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Game} from "../interface/Game";
-import {GameTag} from "../game-tag";
+import {Game} from "../../interface/game";
+import {GameGenre} from "../../enum/game-genre";
 
 @Pipe({
-  name: 'tagPipe'
+  name: 'gameGenreFilter'
 })
-export class TagPipe implements PipeTransform {
+export class GameGenreFilterPipe implements PipeTransform {
 
-  transform(items: Game[], searchTag: keyof typeof GameTag): any[] {
+  transform(items: Game[], searchTag: keyof typeof GameGenre): any[] {
     if (!items) {
       return [];
     }

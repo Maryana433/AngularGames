@@ -8,10 +8,10 @@ import {Component, Input} from '@angular/core';
 export class LinkImageComponent {
 
   @Input()
-  public link: any = null;
+  public link: string|number = '';
 
   @Input()
-  public image: any = null;
+  public image: string = '';
 
   @Input()
   public styles: any = null;

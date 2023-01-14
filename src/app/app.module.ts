@@ -5,8 +5,8 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { MainPageModule } from './features/main-page/main-page.module';
 import {CommonModule} from "@angular/common";
-import { SpinnerComponent } from './core/spinner/spinner.component';
-import {LoadingInterceptor} from "./core/loading.interceptor";
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import {LoadingInterceptor} from "./core/interceptor/loading.interceptor";
 import {NgxPaginationModule} from "ngx-pagination";
 
 
