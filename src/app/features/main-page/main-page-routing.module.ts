@@ -9,9 +9,9 @@ const routes: Routes = [
   // { path: '**', component: GameListComponent}
 ];
 
-//{scrollPositionRestoration: 'enabled'}
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{anchorScrolling: 'enabled'})],
   exports: [RouterModule]
 })
 export class MainPageRoutingRoutingModule {

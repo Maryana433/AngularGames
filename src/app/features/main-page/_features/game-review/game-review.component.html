@@ -1,12 +1,12 @@
 <div class="article">
 
-  <div class="game_name" id="review">{{gameInfo.name}}</div>
+  <div class="game_name">{{gameInfo.name}}</div>
 
   <div style="display: flex; justify-content: center;">
   <div class="row">
   <img class="column gameImage" src="{{gameInfo.background_image}}"/>
 
-<div class="table column push" >
+<div class="table column push" id="review">
 <table>
   <tr>
     <td style="white-space: nowrap;">Metacritic scores</td>
@@ -53,7 +53,7 @@
   </div>
 
 
-  <div class="description_text">
+  <div class="description_text" >
     {{removeHtmlTags(gameInfo.description)}}
   </div>
 

@@ -9,6 +9,7 @@ import {GameGenreFilterPipe} from "../../../../core/pipe/filter-pipe/filter-game
 import {SpinnerComponent} from "../../../../shared/spinner/spinner.component";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {LoadingInterceptor} from "../../../../core/interceptor/loading.interceptor";
+import {CacheInterceptor} from "../../../../core/cache/cache-interceptor";
 
 @NgModule({
     declarations: [
@@ -23,9 +24,9 @@ import {LoadingInterceptor} from "../../../../core/interceptor/loading.intercept
     NgxPaginationModule,
     FormsModule
   ],  providers: [
-    {
-      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+    // }
   ],
 })
 export class GameListModule { }
