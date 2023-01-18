@@ -3,13 +3,12 @@
   justify-content: right;
   width: 100%;
   background-color: rgb(12, 20, 44);
-  color: red;
   padding:10px 0px;
 }
 
 a{
   text-decoration: none;
-  color: red;
+  color: white;
   padding-right: 40px;
 }
 

@@ -1,10 +1,10 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {Game} from "../../interface/game";
+import {GameElementInfo} from "../../interface/game-element-info";
 
 @Pipe({ name: 'gameNameFilter' })
 export class GameNameFilterPipe implements PipeTransform {
 
-  transform(items: Game[], searchText: string): any[] {
+  transform(items: GameElementInfo[], searchText: string): any[] {
     if (!items) {
       return [];
     }

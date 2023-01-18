@@ -3,7 +3,7 @@
     <div class="game_name">{{gameName | uppercase}}</div>
     <div class="image">
       <app-link-image [styles]="{height: '300px',width: '100%', loading:'lazy'}"
-                      [link]="gameId" [image]="gameImage"></app-link-image>
+                      [link]="getLink()" [image]="gameImage"></app-link-image>
     </div>
   </div>
 </article>

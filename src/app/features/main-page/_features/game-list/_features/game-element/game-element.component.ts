@@ -15,7 +15,10 @@ export class GameElementComponent {
   public gameImage: string = '';
 
   @Input()
-  public gameId: number = 0;
+  public gameId: number = 1;
 
 
+  getLink():number {
+    return this.gameId;
+  }
 }

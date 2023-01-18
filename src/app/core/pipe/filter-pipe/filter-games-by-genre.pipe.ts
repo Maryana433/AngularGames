@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Game} from "../../interface/game";
+import {GameElementInfo} from "../../interface/game-element-info";
 import {GameGenre} from "../../enum/game-genre";
 
 @Pipe({
@@ -7,7 +7,7 @@ import {GameGenre} from "../../enum/game-genre";
 })
 export class GameGenreFilterPipe implements PipeTransform {
 
-  transform(items: Game[], searchTag: keyof typeof GameGenre): any[] {
+  transform(items: GameElementInfo[], searchTag: keyof typeof GameGenre): any[] {
     if (!items) {
       return [];
     }
@@ -16,8 +16,8 @@ export class GameGenreFilterPipe implements PipeTransform {
     }
     console.log(searchTag);
 
-    let filteredGames:Game[] = [];
-    items.forEach((game:Game) => {
+    let filteredGames:GameElementInfo[] = [];
+    items.forEach((game:GameElementInfo) => {
       console.log('searchTag - ' + searchTag);
       if(game.genres?.includes(searchTag))
         filteredGames.push(game);

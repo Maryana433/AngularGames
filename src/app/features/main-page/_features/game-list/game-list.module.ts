@@ -6,10 +6,13 @@ import {NgxPaginationModule} from "ngx-pagination";
 import { GameNameFilterPipe} from "../../../../core/pipe/filter-pipe/filter-games-by-name.pipe";
 import {FormsModule} from "@angular/forms";
 import {GameGenreFilterPipe} from "../../../../core/pipe/filter-pipe/filter-games-by-genre.pipe";
+import {SpinnerComponent} from "../../../../shared/spinner/spinner.component";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {LoadingInterceptor} from "../../../../core/interceptor/loading.interceptor";
 
 @NgModule({
     declarations: [
-        GameListComponent, GameNameFilterPipe, GameGenreFilterPipe
+        GameListComponent, GameNameFilterPipe, GameGenreFilterPipe, SpinnerComponent
     ],
     exports: [
         GameListComponent
@@ -19,6 +22,10 @@ import {GameGenreFilterPipe} from "../../../../core/pipe/filter-pipe/filter-game
     GameElementModule,
     NgxPaginationModule,
     FormsModule
-  ]
+  ],  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+    }
+  ],
 })
 export class GameListModule { }

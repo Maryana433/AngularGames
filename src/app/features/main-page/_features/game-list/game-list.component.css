@@ -1,43 +1,40 @@
-/*.row {*/
-/*  display: flex;*/
-/*  padding-bottom: 10px;*/
-/*}*/
-
-/*.column {*/
-/*  flex: 50%;*/
-/*}*/
-
-
 .column{
   height: content-box;
 }
 
 .row{
-  column-count: 2;
-  padding-top: 25px;
-  padding-right: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
 }
 
 
 input::placeholder{
-  color: #0b0a0c;
+  color: white;
 }
 
 input{
-  background-color: #401f9a;
-
+  background-color: rgb(3, 3, 30);
+  color: white;
 }
 
 button:active{
-  background-color: white;
+  background-color: #5d5b5b;
+}
+
+button:hover{
+  background-color: #5d5b5b;
 }
 
 button{
   border-radius: 6px;
-  background-color: #401f9a;
+  background-color: rgb(3, 3, 30);
+  color: white;
+  border: white;
 }
 
-.my-pagination ::ng-deep .ngx-pagination .current {
-  background: #401f9a;
+.my-pagination ::ng-deep .current  {
+  background: rgb(3, 3, 30);
   color: white;
+  margin: 0 !important;
 }

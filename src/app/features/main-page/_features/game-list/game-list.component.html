@@ -1,28 +1,22 @@
+<app-spinner [loading] = "loading"></app-spinner>
 <div style="background-color: rgb(16, 24, 51);" id="game-list">
-  <div style="display: flex; justify-content: space-evenly; padding-top: 20px">
-
-    <input style="height: 25px;margin:15px 20px 0px 20px; text-align: center" id="search-text"
+  <div style="display: flex; justify-content: space-evenly; padding:20px 0 10px 0">
+    <input style="height: 32px;margin:14px 14px 0 20px; text-align: center" id="search-text"
            [(ngModel)]="searchText" placeholder="Enter game name" autofocus>
 
     <ng-container *ngFor="let tag of getAllGenres()">
-      <button style="height:25px;margin-top:18px;width:fit-content;"
+      <button style="height:35px;width:fit-content;margin-top: 14px;"
               (click)="changeGenre(tag)" value="tag">{{tag}}</button>
     </ng-container>
-
-
   <pagination-controls class="my-pagination" style="min-width: 35%;"
     previousLabel="Prev"
     nextLabel="Next"
     (pageChange)="onTableDataChange($event)"
   ></pagination-controls>
-
   </div>
-
-  <div style="text-align: center; font-size: 25px; color: white">{{currentTag | uppercase}} GAMES</div>
-
+  <div style="text-align: center; font-size: 20px; color: white">{{currentFilterGenre | uppercase}} GAMES</div>
   <div class="row">
-
-    <ng-container *ngFor="let game of allGames | gameNameFilter: searchText | gameGenreFilter:currentTag | paginate
+    <ng-container *ngFor="let game of allGames | gameNameFilter: searchText | gameGenreFilter:currentFilterGenre | paginate
               : {
                   itemsPerPage: itemsPerPage,
                   currentPage: currentPage,
@@ -34,9 +28,7 @@
                                                         [gameId]="game.id"></app-game-element>
     </div>
     </ng-container>
-
   </div>
-
 </div>
 
 

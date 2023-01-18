@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GameService} from "../../../../core/service/api/game.service";
-import {Game} from "../../../../core/interface/game";
+import {GameElementInfo} from "../../../../core/interface/game-element-info";
+import {GameInfo} from "../../../../core/interface/game-info";
 
 @Component({
   selector: 'app-header',
@@ -9,11 +10,13 @@ import {Game} from "../../../../core/interface/game";
 })
 export class HeaderComponent implements OnInit {
 
-  games: Array<Game> = [];
-  currentGame:Game|any;
+  games: Array<GameElementInfo> = [];
+  currentGame:GameElementInfo|any;
   timeToChange:number = 10000;
+  page:number;
 
   constructor(private gameService:GameService) {
+    this.page = Math.floor(Math.random() * 29) + 1;
   }
 
   ngOnInit() {
@@ -21,8 +24,18 @@ export class HeaderComponent implements OnInit {
   }
 
   fetchGameImagesAndStartCarousel(){
-      this.gameService.getGamesPerPage(2).subscribe((data) => {
-        this.games = data.results;
+      this.gameService.getGamesPerPage(this.page).subscribe((data) => {
+
+        let allGamesInfo:GameInfo[] = data.results;
+
+        for (let i = 0; i < allGamesInfo.length; i++) {
+            let allGameInfo:GameInfo = allGamesInfo[i];
+            let genres:Array<string> = allGameInfo.genres.map((genre) => genre.name);
+            let {background_image, name, id} = allGameInfo;
+            // @ts-ignore
+            this.games.push({background_image,name,id,genres});
+        }
+
         this.carousel();
       });
   }

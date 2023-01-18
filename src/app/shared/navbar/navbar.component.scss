@@ -33,12 +33,16 @@ nav {
       margin-inline: auto;
       a {
         display: block;
-        color: rgb(196, 11, 11);
+        color: white;
         padding-top: 20px;
         text-decoration: none;
         padding-bottom: 20px;
-        font-size: 20px;
+        font-size: 25px;
         text-transform: capitalize;
+      };
+
+      a:hover{
+        color: #7f7f7f;
       }
     }
   }

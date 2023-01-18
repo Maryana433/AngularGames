@@ -1,25 +1,60 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GameService} from "../../../../core/service/api/game.service";
-import {Game} from "../../../../core/interface/game";
+import {GameElementInfo} from "../../../../core/interface/game-element-info";
 import {GameGenre} from "../../../../core/enum/game-genre";
+import {GameAllResults, GameInfo} from "../../../../core/interface/game-info";
+
+interface c{
+  id:number;
+}
 
 @Component({
   selector: 'app-game-list',
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.css']
 })
-export class GameListComponent{
+export class GameListComponent implements OnInit, OnDestroy{
 
-  public games: Array<Game> = [];
   currentPage: number = 1;
   searchText:string = '';
   totalItems:number = 600;
   itemsPerPage:number = 20;
-  allGames:Array<Game> = [];
-  currentTag: keyof typeof GameGenre = 'ALL';
+  allGames:Array<GameElementInfo> = [];
+  currentFilterGenre: keyof typeof GameGenre = 'ALL';
+  loading:boolean = true;
 
   constructor(private gameService: GameService) {
     this.getAllGames();
+  }
+
+  ngOnInit(): void {
+    console.log("GameListComponent :: ngOnInit");
+  }
+
+    ngOnDestroy():void{
+      console.log("GameListComponent :: ngOnDestroy");
+    }
+
+  getAllGames() {
+    for (let i = 1; i <= this.totalItems/this.itemsPerPage; i++) {
+      this.gameService.getGamesPerPage(i)
+        .subscribe((data) => {
+            data.results.forEach((gameInfo:GameInfo) => {
+              let genres:Array<string> = gameInfo.genres.map(genre => genre.name);
+              let {background_image, name, id} = gameInfo;
+              // @ts-ignore
+              this.allGames.push({background_image,name,id,genres});
+            })
+          },
+          ()=>{},
+          ()=>{
+            if(this.allGames.length === this.totalItems) {
+              this.allGames = this.allGames.sort((a, b) => a.id - b.id)
+              this.loading = false;
+            }
+          }
+        );
+    }
   }
 
   onTableDataChange(event: any) {
@@ -28,32 +63,9 @@ export class GameListComponent{
 
   calculateTotalItems(searchText: string) {
     let totalItems =  this.allGames.filter(it => {
-      return it.name.toLocaleLowerCase().includes(searchText) && it.genres?.includes(this.currentTag);
+      return it.name.toLocaleLowerCase().includes(searchText) && it.genres?.includes(this.currentFilterGenre);
     }).length;
-    console.log("Total items filtered " + totalItems);
     return totalItems;
-  }
-
-
-  getAllGames(){
-    for (let i = this.totalItems/this.itemsPerPage; i >= 1; i--) {
-      this.gameService.getGamesPerPage(i).subscribe(
-        (data) => {
-          let rawGames = data.results;
-          rawGames.forEach((el:any) => {
-            let {name, background_image, id, genres}: Game = el;
-            let nameOfTags:Array<string> = [];
-            // @ts-ignore
-            genres.forEach((genre:any) => nameOfTags.push(genre.name));
-            let game: Game = {name, background_image, id};
-            game.genres = nameOfTags;
-            this.allGames.push(game);
-          })
-        }
-      );
-    }
-    console.log("All Games")
-    console.log(this.allGames)
   }
 
   getAllGenres():Array<string>{
@@ -61,9 +73,9 @@ export class GameListComponent{
   }
 
   changeGenre(tag:string) {
-    if(this.currentTag.toString() === tag)
-      this.currentTag = 'ALL';
+    if(this.currentFilterGenre.toString() === tag)
+      this.currentFilterGenre = 'ALL';
     else
-      this.currentTag = tag as keyof typeof GameGenre;
+      this.currentFilterGenre = tag as keyof typeof GameGenre;
   }
 }

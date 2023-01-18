@@ -4,7 +4,7 @@
   height: max-content;
 }
 
-img{
+.gameImage{
   max-height: 500px;
   max-width: 650px;
   border: solid rgb(3, 3, 30) 5px;
@@ -58,4 +58,17 @@ table, td {
 
 .push{
   margin-left: auto;
+}
+
+.screens-rows{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  text-align: center;
+  padding: 0 30px;
+}
+
+.screen-image{
+  max-width: 100%;
+  border-radius: 2px;
 }

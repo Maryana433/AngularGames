@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
-import {CommonModule} from '@angular/common';;
 import { GameReviewComponent } from './game-review.component';
-import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MainPageModule} from "../../main-page.module";
-
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import {LoadingInterceptor} from "../../../../core/interceptor/loading.interceptor";
+import {SpinnerComponent} from "../../../../shared/spinner/spinner.component";
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, MainPageModule, CommonModule],
-  declarations: [GameReviewComponent],
+  declarations: [GameReviewComponent]
 })
 export class GameReviewModule {
 

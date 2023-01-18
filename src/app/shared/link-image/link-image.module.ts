@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {LinkImageComponent} from "./link-image.component";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -8,7 +9,7 @@ import {LinkImageComponent} from "./link-image.component";
   declarations: [LinkImageComponent],
   exports:[LinkImageComponent],
   imports: [
-    CommonModule
+    CommonModule,RouterModule
   ]
 })
 export class LinkImageModule { }

@@ -1,12 +1,12 @@
 <div class="article">
 
-  <div class="game_name">{{gameInfo.name}}</div>
+  <div class="game_name" id="review">{{gameInfo.name}}</div>
 
   <div style="display: flex; justify-content: center;">
   <div class="row">
-  <img class="column" src="{{gameInfo.background_image}}"/>
+  <img class="column gameImage" src="{{gameInfo.background_image}}"/>
 
-<div class="table column push">
+<div class="table column push" >
 <table>
   <tr>
     <td style="white-space: nowrap;">Metacritic scores</td>
@@ -23,7 +23,7 @@
 
   <tr>
     <td style="white-space: nowrap;">Platforms</td>
-    <td>{{gameInfo.metacriticPlatforms.join(', ') }}</td>
+    <td>{{gameInfo.platforms.join(', ') }}</td>
   </tr>
 
 
@@ -31,12 +31,22 @@
     <td style="white-space: nowrap;">Publishers</td>
     <td>{{gameInfo.publisherNames.join(', ') }}</td>
   </tr>
-
-
   <tr>
     <td style="white-space: nowrap;">Genres</td>
     <td>{{gameInfo.genreNames.join(', ') }}</td>
   </tr>
+
+  <tr>
+    <td style="white-space: nowrap;">ESRB Raiting</td>
+    <td>{{gameInfo.esrb_rating}}</td>
+  </tr>
+
+
+  <tr>
+    <td style="white-space: nowrap;">Playtime</td>
+    <td>{{gameInfo.playtime + 'h'}}</td>
+  </tr>
+
 </table>
 </div>
 </div>
@@ -45,6 +55,14 @@
 
   <div class="description_text">
     {{removeHtmlTags(gameInfo.description)}}
+  </div>
+
+  <div style="padding: 20px 0" *ngIf="gameScreenshots.length > 0">
+    <div class="screens-rows">
+      <ng-container *ngFor="let screen of gameScreenshots">
+        <img class="screen-image" src={{screen}}>
+      </ng-container>
+    </div>
   </div>
 
 

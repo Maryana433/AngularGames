@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import { LoaderService } from '../../core/service/loader.service';
 
 @Component({
@@ -12,6 +12,10 @@ export class SpinnerComponent{
 
   constructor(private loader: LoaderService) {
   }
+
+  @Input()
+  public loading: boolean = true;
+
 
 
 }
