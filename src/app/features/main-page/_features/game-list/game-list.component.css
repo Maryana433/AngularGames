@@ -37,5 +37,31 @@ button{
   background: rgb(3, 3, 30);
   color: white;
   margin: 0 !important;
-  font-size: 18px !important;
+}
+
+.filterItems{
+  display: flex;
+  justify-content: space-evenly;
+  padding:20px 0 0 0;
+  margin-bottom: 20px
+}
+
+.input-game-name{
+  height: 32px;
+  margin:14px 14px 0 20px;
+  text-align: center;
+}
+
+.genre-buttons{
+  height:40px;
+  width:fit-content;
+  margin: 14px 10px 0 0;
+  font-size: 16px;
+}
+
+.name-of-filtered-games{
+  text-align: center;
+  font-size: 22px;
+  color: white;
+  margin-bottom: 20px;
 }

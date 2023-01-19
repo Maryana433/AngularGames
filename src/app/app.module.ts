@@ -7,17 +7,18 @@ import { MainPageModule } from './features/main-page/main-page.module';
 import {CommonModule} from "@angular/common";
 import {NgxPaginationModule} from "ngx-pagination";
 import {GameReviewModule} from "./features/main-page/_features/game-review/game-review.module";
-import {CacheInterceptor} from "./core/cache/cache-interceptor";
+import {CacheInterceptor} from "./core/interceptor/cache-interceptor";
 import {RouteReuseStrategy} from "@angular/router";
-import {CustomRouteReuseStrategy} from "./features/main-page/reuse-strategy";
+import {CustomRouteReuseStrategy} from "./features/main-page/_features/router/reuse-strategy";
 import {LoadingInterceptor} from "./core/interceptor/loading.interceptor";
+import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.component";
 
 
 
 @NgModule({
     imports: [BrowserModule, FormsModule, HttpClientModule, MainPageModule,
       CommonModule, NgxPaginationModule, GameReviewModule],
-    declarations: [AppComponent],
+    declarations: [AppComponent, LoadingSpinnerComponent],
     bootstrap: [AppComponent],
     providers:[
     {

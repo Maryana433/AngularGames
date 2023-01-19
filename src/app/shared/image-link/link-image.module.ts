@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {LinkImageComponent} from "./link-image.component";
+import {ImageLinkComponent} from "./image-link.component";
 import {RouterModule} from "@angular/router";
 
 
 
 @NgModule({
-  declarations: [LinkImageComponent],
-  exports:[LinkImageComponent],
+  declarations: [ImageLinkComponent],
+  exports:[ImageLinkComponent],
   imports: [
     CommonModule,RouterModule
   ]

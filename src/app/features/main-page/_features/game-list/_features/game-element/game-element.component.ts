@@ -7,7 +7,6 @@ import {Component, Input} from '@angular/core';
 })
 export class GameElementComponent {
 
-
   @Input()
   public gameName: string = '';
 
@@ -15,10 +14,6 @@ export class GameElementComponent {
   public gameImage: string = '';
 
   @Input()
-  public gameId: number = 1;
+  public link: number = 1;
 
-
-  getLink():number {
-    return this.gameId;
-  }
 }

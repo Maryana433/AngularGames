@@ -1,14 +1,13 @@
-import {GameGenre} from "../enum/game-genre";
 import {ESRBRating} from "../enum/esrbrating";
 
-export interface GameAllResults{
+export interface AllGameResults {
   count:number,
   next:string,
   previous:string,
-  results:GameInfo[]
+  results:GameData[]
 }
 
-export interface GameInfo {
+export interface GameData {
   id: number;
   slug: string;
   name: string;

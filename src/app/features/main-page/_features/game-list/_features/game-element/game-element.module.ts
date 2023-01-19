@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameElementComponent } from './game-element.component';
-import {LinkImageModule} from "../../../../../../shared/link-image/link-image.module";
+import {LinkImageModule} from "../../../../../../shared/image-link/link-image.module";
 
 
 

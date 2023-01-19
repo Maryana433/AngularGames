@@ -1,4 +1,4 @@
-export interface GameElementInfo {
+export interface GameItem {
   genres?:Array<string>,
   background_image:string,
   name:string;

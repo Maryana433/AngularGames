@@ -2,10 +2,10 @@ import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-link-image',
-  templateUrl: './link-image.component.html',
-  styleUrls: ['./link-image.component.css']
+  templateUrl: './image-link.component.html',
+  styleUrls: ['./image-link.component.css']
 })
-export class LinkImageComponent {
+export class ImageLinkComponent {
 
   @Input()
   public link: string|number = '';

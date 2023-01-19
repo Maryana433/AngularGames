@@ -1,6 +1,6 @@
 import {ESRBRating} from "../enum/esrbrating";
 
-export interface GameReviewInfo{
+export interface GameReview {
   name:string;
   description:string;
   metacritic:number;

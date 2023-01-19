@@ -6,7 +6,7 @@ import {MainPageModule} from "../../main-page.module";
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import {LoadingInterceptor} from "../../../../core/interceptor/loading.interceptor";
-import {SpinnerComponent} from "../../../../shared/spinner/spinner.component";
+import {LoadingSpinnerComponent} from "../../../../shared/loading-spinner/loading-spinner.component";
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, MainPageModule, CommonModule],

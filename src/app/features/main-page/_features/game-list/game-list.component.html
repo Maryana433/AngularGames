@@ -1,32 +1,36 @@
-<app-spinner [loading] = "loading"></app-spinner>
 <div style="background-color: rgb(16, 24, 51);" id="game-list">
-  <div style="display: flex; justify-content: space-evenly; padding:20px 0 0 0;margin-bottom: 20px">
-    <input style="height: 32px;margin:14px 14px 0 20px; text-align: center" id="search-text"
-           [(ngModel)]="searchText" placeholder="Enter game name" autofocus>
 
-    <ng-container *ngFor="let tag of getAllGenres()">
-      <button style="height:40px;width:fit-content;margin: 14px 10px 0 0; font-size: 16px"
-              (click)="changeGenre(tag)" value="tag">{{tag}}</button>
+  <div class="filterItems">
+    <input class="input-game-name" id="search-text"
+           [(ngModel)]="searchGameName" placeholder="Enter game name">
+
+    <ng-container *ngFor="let genre of getAllGenres()">
+      <button class="genre-buttons" (click)="changeGenre(genre)" value="genre">{{genre}}</button>
     </ng-container>
+
   <pagination-controls class="my-pagination" style="min-width: 35%;"
     previousLabel="Prev"
     nextLabel="Next"
-    (pageChange)="onTableDataChange($event)"
+    (pageChange)="onPageChange($event)"
   ></pagination-controls>
   </div>
-  <div style="text-align: center; font-size: 22px; color: white; margin-bottom: 20px">{{currentFilterGenre | uppercase}} GAMES</div>
+
+  <div class="name-of-filtered-games">{{currentFilterGenre | uppercase}} GAMES</div>
+
   <div class="row">
-    <ng-container *ngFor="let game of allGames | gameNameFilter: searchText | gameGenreFilter:currentFilterGenre | paginate
+    <ng-container *ngFor="let game of allGames | gameNameFilter: searchGameName | gameGenreFilter:currentFilterGenre | paginate
               : {
                   itemsPerPage: itemsPerPage,
                   currentPage: currentPage,
-                  totalItems: calculateTotalItems(searchText)
+                  totalItems: calculateFilteredTotalItems(searchGameName)
                 };let i = index;">
+
     <div class="column" ><app-game-element
                                                         [gameName]="game.name"
                                                         [gameImage]="game.background_image"
-                                                        [gameId]="game.id"></app-game-element>
+                                                        [link]="game.id"></app-game-element>
     </div>
+
     </ng-container>
   </div>
 </div>

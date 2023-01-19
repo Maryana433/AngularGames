@@ -1,21 +1,21 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {GameElementInfo} from "../../interface/game-element-info";
+import {GameItem} from "../../../core/interface/game-item";
 
 @Pipe({ name: 'gameNameFilter' })
 export class GameNameFilterPipe implements PipeTransform {
 
-  transform(items: GameElementInfo[], searchText: string): any[] {
+  transform(items: GameItem[], searchText: string): any[] {
+
     if (!items) {
       return [];
     }
+
     if (!searchText) {
       return items;
     }
-    console.log(searchText);
-    searchText = searchText.toLowerCase();
 
+    searchText = searchText.toLowerCase();
     let result = items.filter(it =>it.name.toLocaleLowerCase().includes(searchText));
-    console.log(result);
 
     return result;
   }
